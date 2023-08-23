@@ -1,4 +1,4 @@
-const userRoutes = require('./usersRoute')
+const userRoutes = require('./userRoutes')
 
 module.exports = app => {
     app.get('/', (req, res) => {
