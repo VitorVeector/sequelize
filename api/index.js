@@ -1,12 +1,12 @@
 const express = require('express')
-const bodyParser = require('body-parser')
+const routes = require('./routes')
 
 const app = express()
-
 const port = 3000
+
+routes(app)
 
 app.listen(port, () => `O servidor está rodando na porta: ${port}!`)
 
-app.get('/', (req, res) => {
-    res.status(200).send({message: 'Você esta conectado'})
-})
+module.exports = app
+
