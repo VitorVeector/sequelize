@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.bulkInsert('Turmas', [
+		return queryInterface.bulkInsert('Classes', [
 			{
 				init_date: "2020-02-01",
 				level_id: 1,
@@ -33,6 +33,6 @@ module.exports = {
 	},
 
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.bulkDelete('Turmas', null, {})
+		return queryInterface.bulkDelete('Classes', null, {})
 	}
 }
