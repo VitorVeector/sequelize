@@ -17,6 +17,9 @@ module.exports = {
                     key: 'id'
                 }
             },
+            init_date: {
+                type: Sequelize.DATEONLY
+            },
             level_id: {
                 allowNull: false,
                 type: Sequelize.INTEGER,
@@ -24,9 +27,6 @@ module.exports = {
                     model: 'Levels',
                     key: 'id'
                 }
-            },
-            init_date: {
-                type: Sequelize.DATEONLY
             },
             createdAt: {
                 allowNull: false,
