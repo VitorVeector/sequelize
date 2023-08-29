@@ -9,7 +9,14 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     Users.associate = function (models){
-        
+        // Definindo Associação
+        Users.hasMany(models.Classes, {
+            foreignKey: 'teacher_id'
+        }) 
+        Users.hasMany(models.Enrollments, {
+            foreignKey: 'student_id'
+        })
     }
+
     return Users;
 };

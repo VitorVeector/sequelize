@@ -1,9 +1,6 @@
 const UserController = require('../controllers/UserController')
 const { Router } = require('express')
 
-const UserNotFound = require('../Error/UserNotFound')
-const UserAlreadyExists = require('../Error/UserAlreadyExists')
-
 const router = Router()
 
 router.get('/users', UserController.getAllUser)
