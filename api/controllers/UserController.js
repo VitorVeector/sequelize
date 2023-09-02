@@ -5,7 +5,6 @@ const UserAlreadyExists = require('../Error/UserAlreadyExists')
 class UserController {
     static async getAllUser(req, res) {
         try {
-            const id = req.params.id
             const users = await database.Users.findAll()
             res.status(200).send(users)
             return users
