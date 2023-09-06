@@ -96,6 +96,79 @@ class UserController {
             res.status(500).send(error.message)
         }
     }
+
+    //Enrollments
+    static async getEnrollment(req, res) {
+        try {
+            const { studentId, enrollmentId } = req.params
+            const enrollment = await database.Enrollments.findOne({
+                where: {
+                    id: enrollmentId,
+                    student_id: studentId
+                }
+            })
+            if (!enrollment) {
+                res.status(404).send(new Error())
+            }
+            res.status(200).send(enrollment)
+        } catch (err) {
+            res.status(500).send(err.message)
+        }
+    }
+
+    static async getAllEnrollment(req, res) {
+        try {
+            const { studentId } = req.params
+            const enrollment = await database.Enrollments.findAll({
+                where: {
+                    student_id: studentId
+                }
+            })
+            if (!enrollment) {
+                res.status(404).send(new Error())
+            }
+            res.status(200).send(enrollment)
+        } catch (err) {
+            res.status(500).send(err.message)
+        }
+    }
+
+    static async createEnrollment(req, res) {
+        try {
+            const { studentId } = req.params
+            const data = req.body
+            const newEnrollment = await database.Enrollments.create({ ...data, student_id: studentId })
+            res.status(201).send(newEnrollment)
+        } catch (err) {
+            res.status(500).send(err.message)
+        }
+    }
+
+    static async updateEnrollment(req, res) {
+        try {
+            const data = req.body
+            const { studentId, enrollmentId } = req.params
+            const enrollment = await database.Enrollments.findOne({
+                where: {
+                    id: enrollmentId,
+                    student_id: studentId
+                }
+            })
+            if (!enrollment) {
+                res.status(404).send(new UserNotFound().message)
+            } else {
+                await database.Enrollments.update(data, {
+                    where: {
+                        id: enrollmentId,
+                        student_id: studentId
+                    }
+                })
+            }
+
+        } catch (err) {
+            res.status(500).send(err.message)
+        }
+    }
 }
 
 module.exports = UserController
